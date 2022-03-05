@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "formula.h"
+#include "../include/formula.h"
 
 using namespace std;
 

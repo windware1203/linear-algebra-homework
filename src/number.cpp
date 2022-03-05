@@ -1,4 +1,4 @@
-#include "number.h"
+#include "../include/number.h"
 
 int abs(int a){
     return a < 0 ? a * -1 : a;

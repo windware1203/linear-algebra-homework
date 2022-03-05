@@ -1,5 +1,5 @@
 
-#include "formula.h"
+#include "../include/formula.h"
 Formula Formula::operator+(const Formula &f){
     if(this->vars.size() != f.vars.size()){
         return {{}, 0};
