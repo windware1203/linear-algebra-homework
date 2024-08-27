@@ -29,7 +29,7 @@ run:
 test:compile
 	${EXE_FILE} < ${TEST_FILE}
 
-${BIN_PATH}/%.o: 
+${BIN_PATH}/%.o: %.h %.cpp
 	-@mkdir "${BIN_PATH}"
 	${CC} ${ARGS} -c -o ${BIN_PATH}/$*.o ${SRC_PATH}/$*.cpp
 

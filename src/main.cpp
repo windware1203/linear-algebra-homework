@@ -104,6 +104,57 @@ void toRref(vector<Formula> &v){
     print_marix(v);
 }
 
+void solveRrefAndPrint(vector<Formula> &v){
+    int length = (int)v[0].vars.size();
+    int map[length] = {0};
+    int count = 0;
+    for(int i = 0 ; i < (int)v.size() ; i++){
+        while(v[i].vars[i + count].upper != 1){
+            map[i + count] = count+1;
+            count++;
+        }
+        if(i == (int)v.size() - 1){
+            i++;
+            while(i + count < length){
+                map[i + count] = count+1;
+                count++;
+            }
+        }
+    }
+    
+    cout <<"map: ";
+    for(int a : map){
+        cout << a << " ";
+    }
+    cout <<endl;
+
+    count = 0;
+    for(int i = 0 ; i < length ; i++){
+        if(map[i] != 0){
+            cout << "a" << i << " = s" << map[i]-1 << endl;
+            continue;
+        }
+        cout << "a" << i << " = " << v[count].left;
+        for(int j = i + 1 ; j < length ; j++){
+            if(v[count].vars[j].upper != 0){
+                Number n = v[count].vars[j];
+                if(n.upper < 0){
+                    cout << " + " << n.upper * -1;
+                }
+                else{
+                    cout << " - " << n.upper;
+                }
+                if(n.lower != 1){
+                    cout << "/" << n.lower;
+                }
+                cout << "s" << map[j] - 1;
+            }
+        }
+        cout << endl;
+        count++;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     vector<Formula> v;                   // ans:  1, 2, 3
@@ -126,6 +177,7 @@ int main(int argc, char const *argv[])
         v.push_back({temp, left});
     }
     toRref(v);
+    solveRrefAndPrint(v);
 
     return 0;
 }
